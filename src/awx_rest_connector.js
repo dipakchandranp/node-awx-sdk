@@ -9,12 +9,16 @@
 const axios = require("axios");
 const request = require("request");
 
+const ERROR_CODES = {
+  AWX_01: "AWX_01", //Must provide host, username and password of AWX to use the sdk
+  AWX_02: "AWX_02" //Failed to get AWS API resources
+};
+
 class AwxRestConnector {
   constructor(host, username, password) {
     if (!host || !username || !password) {
-      return throw new Error(
-        "Must provide host, username and password of AWX to use the sdk"
-      );
+      const err = new Error(ERROR_CODES.AWX_01);
+      throw err;
     }
     this.host = host;
     this.username = username;
@@ -78,7 +82,7 @@ class AwxRestConnector {
         return this.apiVersion;
       })
       .catch(error => {
-        throw new Error("Failed to get AWS API resources");
+        throw new Error(ERROR_CODES.AWX_02);
       });
   }
 
@@ -92,7 +96,7 @@ class AwxRestConnector {
         this.apiResources = response.data;
       })
       .catch(error => {
-        throw new Error(`Failed to get AWS API resources: ${currentVersion}`);
+        throw new Error(ERROR_CODES.AWX_02);
       });
   }
 
@@ -103,7 +107,7 @@ class AwxRestConnector {
         url: `${this.host}${apiResources.tokens}`,
         method: "POST",
         auth: {
-          user: this.usernam,
+          user: this.username,
           pass: this.password
         }
       };
@@ -144,20 +148,10 @@ class AwxRestConnector {
           return response.data;
         })
         .catch(error => {
-          console.log(error);
           throw error;
         });
     });
   }
 }
-const awxCommunicator = new AwxCommunicator();
-module.exports = awxCommunicator;
 
-awxCommunicator
-  .callDynamic(
-    "GET",
-    "/api/v2/workflow_job_templates/?search=Dipak_Workflow___1594614891225"
-  )
-  .then(resp => {
-    console.log(resp);
-  });
+module.exports = AwxRestConnector;
