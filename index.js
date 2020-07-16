@@ -1,3 +1,2 @@
-exports.printMsg = function() {
-  console.log("This is a message from the demo package");
-};
+const AwxRestConnector = require("./src/awx_rest_connector");
+module.exports = AwxRestConnector;
