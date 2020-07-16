@@ -1,6 +1,6 @@
 {
   "name": "awx-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "node-aws-sdk is a utility library for connecting a node js application to Ansible AWX using ReST APIs.",
   "main": "index.js",
   "scripts": {
