@@ -1,0 +1,19 @@
+{
+  "name": "awx-sdk",
+  "version": "1.0.0",
+  "description": "node-aws-sdk is a utility library for connecting a node js application to Ansible AWX using ReST APIs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipakchandranp/node-awx-sdk.git"
+  },
+  "author": "Dipak Chandran P",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dipakchandranp/node-awx-sdk/issues"
+  },
+  "homepage": "https://github.com/dipakchandranp/node-awx-sdk#readme"
+}
